@@ -1,13 +1,11 @@
-package it.unical.towerdefend.objetcs;
-
 import java.io.File;
 import java.util.Scanner;
 
-public class Mappa {
 
-	private int [][] matrix;
-	
-	public int[][] create2DIntMatrixFromFile(String filename) throws Exception {
+public class main {
+
+	public static int[][] create2DIntMatrixFromFile(String filename) throws Exception {
+		int[][] matrix = {{1}, {2}};
 
 		File inFile = new File(filename);
 		Scanner in = new Scanner(inFile);
@@ -34,17 +32,12 @@ public class Mappa {
 		 return matrix;
 		}
 	
-	public int getSpawnX() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		
 
-	public int getSpawnY() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
-	
-	
-	
 
 }
