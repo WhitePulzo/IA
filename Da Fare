@@ -1,0 +1,21 @@
+IMPORTANTE:
+
+Definire mondo di gioco in maniera logica:
+
+-	Interfaccia per gestione nemici;
+-	Interfaccia per torri;
+-	Classe castello;
+-	Interfaccia proiettile che richiama la classe proiettile (specifica)
+	che le serve in base alla torre che la sta utilizzando;
+-	Classe mappa che serve a leggere un txt e lo converte in "matrice";
+-	{LEG:
+		0	->	Spazio Vuoto;
+		1	->  Strada percorribile;
+		2	-> 	Spawn Point;
+		3	->  Ending Point [castello];
+		4	->	Torre base (danno basso, velocità media);
+		5	->  Torre media (danno medio, velocità bassa);
+		88	->	Flak 88 (danno alto, velocità media)
+	};
+-	Game Loop
+-	Classe Wave
