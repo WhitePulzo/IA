@@ -15,7 +15,10 @@ Definire mondo di gioco in maniera logica:
 		3	->  Ending Point [castello];
 		4	->	Torre base (danno basso, velocità media);
 		5	->  Torre media (danno medio, velocità bassa);
-		88	->	Flak 88 (danno alto, velocità media)
+		88	->	Flak 88 (danno alto, velocità media);
+		6	->	Nemico leggero;
+		7	->	Nemico Medio;
+		8	->	Nemico Pesante;
 	};
 -	Game Loop
 -	Classe Wave
