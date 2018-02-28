@@ -1,50 +1,37 @@
 package it.unical.towerdefend.objetcs;
 
-import java.io.File;
-import java.util.Scanner;
-
 public class Mappa {
-// class mappa
-	private int [][] matrix;
-	
-	public int[][] create2DIntMatrixFromFile(String filename) throws Exception {
+	// class mappa
+	private int mappaDiGioco[][] = { { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+			{ 0, 0, 1, 1, 1, 0, 0, 0, 0, 0 }, { 0, 0, 1, 0, 1, 0, 0, 0, 0, 0 },
+			{ 2, 1, 1, 0, 1, 1, 0, 1, 1, 3 }, { 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 },
+			{ 0, 0, 0, 0, 0, 1, 1, 1, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+			{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 
-		File inFile = new File(filename);
-		Scanner in = new Scanner(inFile);
+	public int[][] getMappaDiGioco() {
+		return mappaDiGioco;
+	}
 
-		int intLength = 0;
-		String[] length = in.nextLine().trim().split("\\s+");
-		  for (int i = 0; i < length.length; i++) {
-		    intLength++;
-		  }
-
-		in.close();
-
-		matrix = new int[intLength][intLength];
-		in = new Scanner(inFile);
-
-		int lineCount = 0;
-		while (in.hasNextLine()) {
-		  String[] currentLine = in.nextLine().trim().split("\\s+"); 
-		     for (int i = 0; i < currentLine.length; i++) {
-		        matrix[lineCount][i] = Integer.parseInt(currentLine[i]);    
-		            }
-		  lineCount++;
-		 }                                 
-		 return matrix;
-		}
-	
 	public int getSpawnX() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 5;
 	}
 
 	public int getSpawnY() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	
-	
+
+	public void print2D() {
+		// Loop through all rows
+		for (int i = 0; i < mappaDiGioco.length; i++) {
+			for (int j = 0; j < mappaDiGioco[i].length; j++) {
+				System.out.print(mappaDiGioco[i][j] + " ");
+			}
+			System.out.println();
+		}
+
+	}
 
 }

@@ -4,15 +4,14 @@ public class NemicoLeggero extends Nemico {
 
 	
 	
-	public NemicoLeggero(){
-		
-		super();
+	public NemicoLeggero(Mappa m) {
+		super(m);
 		this.hp=2;
 		this.atk=1;
 		this.ID=6;
 		this.velocita=1.0;
-		this.coordinata_X=m.getSpawnX();
-		this.coordinata_Y=m.getSpawnY();
+		this.setCoordinate(m.getSpawnX(),m.getSpawnY());
+		
 	}
 	
 }
