@@ -2,9 +2,9 @@ package it.unical.towerdefend.objetcs;
 
 public class NemicoPesante extends Nemico {
 
-	public NemicoPesante(Mappa m) {
+	public NemicoPesante(Mappa m, int numero) {
 
-		super(m);
+		super(m,numero);
 		this.hp = 3;
 		this.atk = 3;
 		this.ID = 8;

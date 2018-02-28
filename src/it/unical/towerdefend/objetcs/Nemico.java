@@ -6,45 +6,50 @@ public class Nemico {
 	protected int atk;
 	protected double velocita;
 	protected int ID;
+	protected int numero;
 
+	private int oldPositionX = 0, oldPositionY = 0;
 	protected boolean eVivo = true;
-	protected int coordinata_X, coordinata_Y;
+	protected Position pos;
 
 	protected Mappa m;
 
-	public Nemico(Mappa m) {
+	public Nemico(Mappa m, int numero) {
 
 		hp = 0;
 		atk = 0;
 		// velocita = 0;
 		ID = 0;
-		coordinata_X = 0;
-		coordinata_Y = 0;
+		pos = new Position(0, 0);
 		this.m = m;
+		this.numero = numero;
 	}
 
 	public void setCoordinate(int X, int Y) {
 
-		this.coordinata_X = X;
-		this.coordinata_Y = Y;
+		pos.Row = X;
+		pos.Column = Y;
+
+	}
+
+	public void setCoordinate(Position pos) {
+
+		setCoordinate(pos.Row, pos.Column);
 	}
 
 	public int getCoordinateX() {
 
-		return coordinata_X;
+		return pos.Row;
 	}
 
 	public int getCoordinateY() {
 
-		return coordinata_Y;
+		return pos.Column;
 	}
 
-	public void setCoordinateX(int x) {
-		coordinata_X = x;
-	}
+	public Position getPosition() {
 
-	public void setCoordinateY(int y) {
-		coordinata_Y = y;
+		return pos;
 	}
 
 	public boolean eAncoraVivo() {
@@ -71,35 +76,52 @@ public class Nemico {
 
 	public void avanza() {
 
-		int oldPosX = this.getCoordinateX();
-		int oldPosY = this.getCoordinateY();
+		int newPos = 0;
 
 		int[][] matriceMappa = m.getMappaDiGioco();
 
 		// invece di controllare la sottomatrice attorno al mostro controllo una
 		// delle due possibil posizioni successive
-		if (matriceMappa[oldPosX - 1][oldPosY] != 0) {
-			this.setCoordinateX(oldPosX - 1);
-			// se la posizione successiva può essere usata per avanzare vado
-			// nella mappa e scrivo l'id corrente del mostro
-			// invece la vecchia posizione viene settata a 0
-			System.out.println("avanzo");
-			matriceMappa[oldPosX][oldPosY] = 1;
-			matriceMappa[this.getCoordinateX()][this.getCoordinateY()] = this.ID;
-		}
-		
-		else if (matriceMappa[oldPosX + 1][oldPosY] != 0) {
-			this.setCoordinateX(oldPosX + 1);
-			System.out.println("avanzo");
-			matriceMappa[oldPosX][oldPosY] = 1;
-			matriceMappa[this.getCoordinateX()][this.getCoordinateY()] = this.ID;
+		if (matriceMappa[pos.Row - 1][pos.Column] != 0) {
+			newPos = pos.Row - 1;
+			if (this.oldPositionX != newPos) {
+				oldPositionX = this.getCoordinateX();
+				oldPositionY = this.getCoordinateY();
+				setCoordinate(newPos, pos.Column);
+				// se la posizione successiva può essere usata per avanzare vado
+				// nella mappa e scrivo l'id corrente del mostro
+				// invece la vecchia posizione viene settata a 0
+				System.out.println("avanzo");
+				matriceMappa[oldPositionX][oldPositionY] = 1;
+				matriceMappa[this.getCoordinateX()][this.getCoordinateY()] = this.ID;
+				return;
+			}
 		}
 
-		else if (matriceMappa[oldPosX][oldPosY + 1] != 0) {
+		if (matriceMappa[pos.Row + 1][pos.Column] != 0) {
+			newPos = pos.Row + 1;
+			if (this.oldPositionX != newPos) {
+				oldPositionX = this.getCoordinateX();
+				oldPositionY = this.getCoordinateY();
+				setCoordinate(newPos, pos.Column);
+				System.out.println("avanzo");
+				matriceMappa[oldPositionX][oldPositionY] = 1;
+				matriceMappa[this.getCoordinateX()][this.getCoordinateY()] = this.ID;
+				return;
+			}
+		}
+
+		if (matriceMappa[pos.Row][pos.Column + 1] != 0) {
 			System.out.println("avanzo2");
-			this.setCoordinateY(oldPosY + 1);
-			matriceMappa[oldPosX][oldPosY] = 1;
-			matriceMappa[this.getCoordinateX()][this.getCoordinateY()] = this.ID;
+			newPos = pos.Column + 1;
+			if (this.oldPositionY != newPos) {
+				oldPositionX = this.getCoordinateX();
+				oldPositionY = this.getCoordinateY();
+				setCoordinate(pos.Row, newPos);
+				matriceMappa[oldPositionX][oldPositionY] = 1;
+				matriceMappa[this.getCoordinateX()][this.getCoordinateY()] = this.ID;
+				return;
+			}
 		}
 	}
 }

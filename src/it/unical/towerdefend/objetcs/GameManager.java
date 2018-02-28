@@ -6,7 +6,7 @@ public class GameManager {
 
 		Mappa m = new Mappa();
 	
-		NemicoLeggero ilNemico = new NemicoLeggero(m);
+		NemicoLeggero ilNemico = new NemicoLeggero(m,1);
 		ilNemico.setCoordinate(m.getSpawnX(), m.getSpawnY());
 		
 		GameLoop threadLoop = new GameLoop(m, ilNemico);
