@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Mappa {
-
+// class mappa
 	private int [][] matrix;
 	
 	public int[][] create2DIntMatrixFromFile(String filename) throws Exception {
