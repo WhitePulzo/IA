@@ -22,3 +22,13 @@ Definire mondo di gioco in maniera logica:
 	};
 -	Game Loop
 -	Classe Wave
+
+
+TO DO 28/02/2018
+
+- aggiungere gestione vita del nemico una volta che raggiunge i castello
+- implementare torri
+- implementare array che dispensano mostri
+
+- traduttore DLV
+- grafica
