@@ -33,3 +33,7 @@ TO DO 28/02/2018
 - traduttore DLV
 - grafica
 - aggiungere le monete per comprare le torri ( variabile globale di gioco ) 
+
+
+- come posso agire sul nemico? devo aggiungere il mostro in una cella oppure 
+far avanzare sulla matrice un indice del mostro che se lo metto nell'apposita struttura dati ottengo la reference del mostro?

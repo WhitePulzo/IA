@@ -2,6 +2,8 @@ package it.unical.towerdefend.objetcs;
 
 public class Position {
 
+	int value;
+	
 	public int Row, Column;
 
 	// setta la posizione nella mappa di un oggetto nemico/mostro
@@ -16,4 +18,6 @@ public class Position {
 
 		return (this.Row == pos.Row && this.Column == pos.Column);
 	}
+	
+	
 }

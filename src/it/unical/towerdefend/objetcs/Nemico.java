@@ -74,8 +74,16 @@ public class Nemico {
 		return true;
 	}
 
+	public void uccidi(){
+		System.out.println("sono un nemico e sono stato ucciso");
+		eVivo = false;
+	}
+	
 	public void avanza() {
 
+		if (!eVivo)
+			return;
+		
 		int newPos = 0;
 
 		int[][] matriceMappa = m.getMappaDiGioco();
