@@ -26,13 +26,17 @@ Definire mondo di gioco in maniera logica:
 
 TO DO 28/02/2018
 
+CICCIO
 - aggiungere gestione vita del nemico una volta che raggiunge i castello
 - implementare torri
 - implementare array che dispensano mostri
+- aggiungere le monete per comprare le torri ( variabile globale di gioco ) 
 
+
+PULZO
 - traduttore DLV
 - grafica
-- aggiungere le monete per comprare le torri ( variabile globale di gioco ) 
+
 
 
 - come posso agire sul nemico? devo aggiungere il mostro in una cella oppure 
