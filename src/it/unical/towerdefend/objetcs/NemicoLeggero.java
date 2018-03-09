@@ -8,7 +8,7 @@ public class NemicoLeggero extends Nemico {
 		super(m,numero);
 		this.hp=2;
 		this.atk=1;
-		this.ID=6;
+		this.ID=7;
 		this.velocita=1.0;
 		this.setCoordinate(m.getSpawnX(),m.getSpawnY());
 		

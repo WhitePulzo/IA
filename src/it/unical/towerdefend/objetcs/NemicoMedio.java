@@ -7,7 +7,7 @@ public class NemicoMedio extends Nemico {
 		super(m,numero);
 		this.hp = 1;
 		this.atk = 2;
-		this.ID = 7;
+		this.ID = 8;
 		this.velocita = 1.5;
 		this.setCoordinate(m.getSpawnX(), m.getSpawnY());
 	}

@@ -1,10 +1,6 @@
 package it.unical.towerdefend.objetcs;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-
-import javax.crypto.spec.PSource;
 
 public class Torretta {
 
