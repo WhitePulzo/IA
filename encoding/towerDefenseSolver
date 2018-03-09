@@ -30,6 +30,10 @@ cellMaps(X,Y,Val) | noCellMaps(X,Y,Val) :- pos(X),pos(Y), symbol(Val).
 :-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=2.
 %%%non piazzo su end pt.
 :-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=3.
+%%non devo piazzare torre dove ci sono nemici
+:-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=7.
+:-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=8.
+:-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=9.
 
 %%%controllo se sta mettendo una torre più forte solo se sulla stessa cella c'era la versione precedente della torre
 :-cell(X,Y,Val1,_),cellMaps(X,Y,Val2,_), #int(VAL), VAL=Val2+1, VAL!=Val1.
