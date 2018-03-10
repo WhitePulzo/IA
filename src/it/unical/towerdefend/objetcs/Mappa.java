@@ -1,7 +1,13 @@
 package it.unical.towerdefend.objetcs;
 
+import java.util.HashMap;
+
 public class Mappa {
 	// class mappa
+	
+	HashMap<Position, Nemico> posizioneNemiciMap = new HashMap<Position, Nemico>();
+	
+	
 	private int mappaDiGioco[][] = { 	{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
 										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }, 
 										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
@@ -12,6 +18,7 @@ public class Mappa {
 										{ 0, 0, 0, 0, 0, 1, 1, 1, 0, 0 }, 
 										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },	
 										{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+	
 
 	public int[][] getMappaDiGioco() {
 		return mappaDiGioco;

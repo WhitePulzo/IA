@@ -14,4 +14,11 @@ public class NemicoLeggero extends Nemico {
 		
 	}
 	
+	@Override
+	public void hurt() {
+		// TODO Auto-generated method stub
+		super.hurt();
+		System.out.println("sono un nemico leggero e ho preso danno");
+	}
+	
 }

@@ -17,10 +17,17 @@ public class GameLoop extends Thread {
 	public void run() {
 
 		while (true) {
-			mappaDiGioco.print2D();
+			if (nemicoTest.eAncoraVivo())
 			nemicoTest.avanza();
+			
 			torrettaTest.attacca(); // da fare solo se il nemico è nel range
 			torrettaTest2.attacca();
+			
+			mappaDiGioco.print2D();
+			System.out.println();
+			System.out.println();
+			System.out.println();
+
 			try {
 				sleep(2000);
 			} catch (InterruptedException e) {

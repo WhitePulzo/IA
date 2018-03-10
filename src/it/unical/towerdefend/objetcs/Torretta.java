@@ -62,13 +62,20 @@ public class Torretta {
 	}
 
 	public void attacca() {
-
+		
+//		for (Position key : mappaDiGIoco.posizioneNemiciMap.keySet()){
+//			System.out.print("LATO TORRE  row: "+key.Row + "  column: "+key.Column);
+//			System.out.println("contiene "+mappaDiGIoco.posizioneNemiciMap.get(key).getClass().getSimpleName());
+//			mappaDiGIoco.posizioneNemiciMap.get(key).hurt();
+//		}
+		
+		
 		// scorre la matrice nelle posizioni adiacenti, se trova un valore
 		// diverso da 1 attacca
 
 		for (Position posizione : posizioniAdiacenti) {
-			if (matriceMappa[posizione.Row][posizione.Column] != 1) {
-				matriceMappa[posizione.Row][posizione.Column] = 1;
+			if (mappaDiGIoco.posizioneNemiciMap.containsKey(posizione)){
+				System.out.println("nemico trovato");
 			}
 		}
 

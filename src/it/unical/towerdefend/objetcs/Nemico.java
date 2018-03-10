@@ -1,5 +1,7 @@
 package it.unical.towerdefend.objetcs;
 
+import java.util.HashMap;
+
 public class Nemico {
 
 	protected int hp;
@@ -20,22 +22,30 @@ public class Nemico {
 		atk = 0;
 		// velocita = 0;
 		ID = 0;
-		pos = new Position(0, 0);
 		this.m = m;
 		this.numero = numero;
+		pos = new Position(m.getSpawnX(), m.getSpawnY());
+//		m.posizioneNemiciMap.put(this.pos, this);
 	}
 
 	public void setCoordinate(int X, int Y) {
 
+//		m.posizioneNemiciMap.remove(this.pos);
+		
 		pos.Row = X;
 		pos.Column = Y;
 
+		// come mai la size rimane sempre uno?
+		m.posizioneNemiciMap.put(this.pos, this);
+
+		HashMap<Position, Nemico> map = m.posizioneNemiciMap;
+		for (Position key : map.keySet()){
+			System.out.print("row: "+key.Row + "  column: "+key.Column);
+			System.out.println("contiene "+map.get(key).getClass().getSimpleName());
+//			map.get(key).hurt();
+		}
 	}
 
-	public void setCoordinate(Position pos) {
-
-		setCoordinate(pos.Row, pos.Column);
-	}
 
 	public int getCoordinateX() {
 
@@ -60,6 +70,10 @@ public class Nemico {
 		return eVivo;
 	}
 
+	public void hurt(){
+		System.out.println("ho preso Danno");
+	}
+	
 	public boolean danneggia(Proiettile colpo) {
 
 		this.hp -= colpo.getDanno();
@@ -80,7 +94,8 @@ public class Nemico {
 	}
 	
 	public void avanza() {
-
+		
+		// il mostro per ora si muove perchè non c'è nessuno che setta il suo essere vivo a false
 		if (!eVivo)
 			return;
 		
@@ -90,7 +105,7 @@ public class Nemico {
 
 		// invece di controllare la sottomatrice attorno al mostro controllo una
 		// delle due possibil posizioni successive
-		if (matriceMappa[pos.Row - 1][pos.Column] != 0) {
+		if (matriceMappa[pos.Row - 1][pos.Column] == 1) {
 			newPos = pos.Row - 1;
 			if (this.oldPositionX != newPos) {
 				oldPositionX = this.getCoordinateX();
@@ -106,7 +121,7 @@ public class Nemico {
 			}
 		}
 
-		if (matriceMappa[pos.Row + 1][pos.Column] != 0) {
+		if (matriceMappa[pos.Row + 1][pos.Column] == 1) {
 			newPos = pos.Row + 1;
 			if (this.oldPositionX != newPos) {
 				oldPositionX = this.getCoordinateX();
@@ -119,7 +134,7 @@ public class Nemico {
 			}
 		}
 
-		if (matriceMappa[pos.Row][pos.Column + 1] != 0) {
+		if (matriceMappa[pos.Row][pos.Column + 1] == 1) {
 			System.out.println("avanzo2");
 			newPos = pos.Column + 1;
 			if (this.oldPositionY != newPos) {
@@ -131,5 +146,6 @@ public class Nemico {
 				return;
 			}
 		}
+		
 	}
 }
