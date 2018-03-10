@@ -1,42 +1,42 @@
-%%%la dimensione della nostra matrice
-Size(10).
-
 %%%la posizione delle righe e delle colonne
-pos(0..9).
+pos(0..3).
 
 %%%il simbolo che rappresenta zone libere(0)/percorso(1)/spawn p.(2)/ending p.(3)/torri(4..6)/nemici(7..9)
-symbol(0..9).
+%%%0 escluso perché indica il percorso libero ed io non vado mai a posizionare un "percorso libero"
+symbol(0).
+symbol(4).
+symbol(5).
+symbol(6).
 
 torre(4,2).
 torre(5,4).
 torre(6,8).
 
-budget(S).
-
 %%%GUESS delle celle scelte da dlv per mettere le torri
-cell(X,Y,Val,Costo) | nocell(X,Y,Val,Costo) :- pos(X), pos(Y), torre(Val,Costo).
+cell(X,Y,Val,Costo) | nocell(X,Y,Val,Costo) :- pos(X),pos(Y), torre(Val,Costo).
 
 %%%GUESS che analizza lo stato attuale della mappa
-cellMaps(X,Y,Val) | noCellMaps(X,Y,Val) :- pos(X),pos(Y), symbol(Val).
+%cellMaps(X,Y,Val) | noCellMaps(X,Y,Val) :- pos(X), pos(Y), symbol(Val).
 
 %%%controllo che nei due guess ci sia esattamente un "elemento" nella stessa cella
-:-cellMaps(X,Y,Val1),cellMaps(X,Y,Val2), Val1!=Val2.
+%:-cellMaps(X,Y,Val1),cellMaps(X,Y,Val2), Val1!=Val2.
 :-cell(X,Y,Val1,_),cell(X,Y,Val2,_), Val1!=Val2.
 
 %%%controllo che non stia piazzando la torre in una parte non ammissibile (1-2-3)
 %%%non piazzo su percorso(1)
-:-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=1.
+:-cell(X,Y,_,_),cellMaps(X,Y,Val), Val=1.
 %%%non piazzo su spawn pt.
-:-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=2.
+:-cell(X,Y,_,_),cellMaps(X,Y,Val), Val=2.
 %%%non piazzo su end pt.
-:-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=3.
-%%non devo piazzare torre dove ci sono nemici
-:-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=7.
-:-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=8.
-:-cell(X,Y,_,_),cellMaps(X,Y,Val,_), Val=9.
+:-cell(X,Y,_,_),cellMaps(X,Y,Val), Val=3.
+%%non piazzo torre dove ci sono nemici
+:-cell(X,Y,_,_),cellMaps(X,Y,Val), Val=7.
+:-cell(X,Y,_,_),cellMaps(X,Y,Val), Val=8.
+:-cell(X,Y,_,_),cellMaps(X,Y,Val), Val=9.
 
 %%%controllo se sta mettendo una torre più forte solo se sulla stessa cella c'era la versione precedente della torre
-:-cell(X,Y,Val1,_),cellMaps(X,Y,Val2,_), #int(VAL), VAL=Val2+1, VAL!=Val1.
+:-cell(X,Y,Val1,_),cellMaps(X,Y,Val2), Val1=5, Val2!=4.
+:-cell(X,Y,Val1,_),cellMaps(X,Y,Val2), Val1=6, Val2!=5.
 
 %%%non è possibile che il valore delle torri sia superiore a BUDGET
 :-#sum{Costo,X,Y: cell(X,Y,_,Costo)}>S, budget(S).
@@ -53,4 +53,4 @@ adiacenze(X,Y,X1,Y1):-cellMaps(X,Y,_),cellMaps(X1,Y1,_), X1=X-1, Y1=Y-1. %in alt
 
 %%%controllo che intorno a me ci sia qualcosa e non metta le torri lontane dal path o dai nemici
 tutteAdiacenze(X,Y,X1,Y1,Val):-cell(X,Y,_,_),cellMaps(X1,Y1,Val), adiacenze(X,Y,X1,Y1).
-:-cell(X,Y,_), #count{X1,Y1: tutteAdiacenze(X,Y,X1,Y1,Val), Val>0}=0.
+:-cell(X,Y,_,_), #count{X1,Y1: tutteAdiacenze(X,Y,X1,Y1,Val), Val>0}=0.
